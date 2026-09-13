@@ -1,12 +1,8 @@
 import type { ReactNode } from "react";
 
-import {
-  HeadContent,
-  Link,
-  Scripts,
-  createRootRoute,
-} from "@tanstack/react-router";
+import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 
+import { Nav } from "../components/Nav";
 import appCss from "../globals.css?url";
 
 const Devtools = import.meta.env.DEV
@@ -21,25 +17,7 @@ const RootDocument = ({ children }: { children: Readonly<ReactNode> }) => {
       </head>
       <body className="p-8">
         <div className="container mx-auto pb-4">
-          <nav>
-            <ol className="list-inside list-disc">
-              {(
-                [
-                  { href: "/", name: "Root" },
-                  { href: "/todos", name: "Todos" },
-                ] as const
-              ).map(({ href, name }) => (
-                <li key={href}>
-                  <Link
-                    className="text-blue-600 underline hover:text-blue-800"
-                    to={href}
-                  >
-                    {name}
-                  </Link>
-                </li>
-              ))}
-            </ol>
-          </nav>
+          <Nav />
         </div>
         {children}
         <Devtools />
