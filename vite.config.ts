@@ -57,11 +57,11 @@ const viteConfig = defineConfig({
     react({ compiler: true }),
     tailwindcss({ optimize: { minify: true } }),
     serwist({
-      swSrc: new URL("src/sw.ts", import.meta.url).pathname,
+      swSrc: "src/sw.ts",
       // Otherwise, it attempts to to output it in dist/server/sw.js
       swDest: new URL("dist/client/sw.js", import.meta.url).pathname,
       swUrl: "/sw.js",
-      globDirectory: new URL("dist/client", import.meta.url).pathname,
+      globDirectory: "dist/client",
       globPatterns: [
         "**/*.{js,css,html,png,svg,mp3,webmanifest,json,ico,woff2}",
       ],
