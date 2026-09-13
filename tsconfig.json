@@ -13,7 +13,7 @@
     "module": "ESNext",
     "moduleResolution": "bundler",
     "noUncheckedSideEffectImports": true,
-    "types": ["vite/client", "@tanstack/react-start"],
+    "types": ["vite/client", "@tanstack/react-start", "@serwist/vite/typings"],
 
     /* Emit */
     "noEmit": true,

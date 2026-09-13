@@ -1,6 +1,7 @@
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
+import { getSerwist } from "virtual:serwist";
 
 import { Nav } from "../components/Nav";
 import appCss from "../globals.css?url";
@@ -11,6 +12,22 @@ const Devtools =
   : () => null;
 
 const RootDocument = ({ children }: { children: Readonly<ReactNode> }) => {
+  useEffect(() => {
+    const loadSerwist = async () => {
+      if ("serviceWorker" in navigator) {
+        const serwist = await getSerwist();
+
+        serwist?.addEventListener("installed", () => {
+          console.log("Serwist installed!");
+        });
+
+        void serwist?.register();
+      }
+    };
+
+    loadSerwist();
+  }, []);
+
   return (
     <html lang="en">
       <head>
