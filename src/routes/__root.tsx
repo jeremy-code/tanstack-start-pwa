@@ -5,8 +5,9 @@ import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { Nav } from "../components/Nav";
 import appCss from "../globals.css?url";
 
-const Devtools = import.meta.env.DEV
-  ? await import("../components/Devtools").then((mod) => mod.Devtools)
+const Devtools =
+  import.meta.env.DEV ?
+    await import("../components/Devtools").then((mod) => mod.Devtools)
   : () => null;
 
 const RootDocument = ({ children }: { children: Readonly<ReactNode> }) => {
@@ -28,6 +29,7 @@ const RootDocument = ({ children }: { children: Readonly<ReactNode> }) => {
 };
 
 const Route = createRootRoute({
+  ssr: false,
   head: () => ({
     meta: [
       { charSet: "utf-8" },

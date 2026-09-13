@@ -53,7 +53,11 @@ const viteConfig = defineConfig({
   plugins: [
     ...(isDev ? [devtools()] : []),
     cloudflare({ viteEnvironment: { name: "ssr" } }),
-    tanstackStart(),
+    tanstackStart({
+      prerender: {
+        enabled: true,
+      },
+    }),
     react({ compiler: true }),
     tailwindcss({ optimize: { minify: true } }),
     serwist({
