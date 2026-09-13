@@ -5,6 +5,7 @@ import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { analyzer } from "vite-bundle-analyzer";
+import { workboxGenerate } from "./workbox-generate";
 
 const isDev = process.env.NODE_ENV !== "production";
 
@@ -15,6 +16,13 @@ const viteConfig = defineConfig({
     tanstackStart(),
     react({ compiler: true }),
     tailwindcss({ optimize: { minify: true } }),
+    {
+      name: "workbox",
+      applyToEnvironment(e) {
+        return e.name === "ssr";
+      },
+      buildStart: () => workboxGenerate(crypto.randomUUID()),
+    },
     ...(process.env.ANALYZE ? [analyzer()] : []),
   ],
 });
