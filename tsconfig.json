@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    /* Visit https://aka.ms/tsconfig to read more about this file */
+
+    /* Type Checking */
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
+
+    /* Modules */
+    "allowImportingTsExtensions": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "noUncheckedSideEffectImports": true,
+    "types": ["vite/client", "@tanstack/react-start"],
+
+    /* Emit */
+    "noEmit": true,
+
+    /* Interop Constraints */
+    "verbatimModuleSyntax": true,
+
+    /* Language and Environment */
+    "jsx": "react-jsx",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "target": "ES2022",
+
+    /* Completeness */
+    "skipLibCheck": true
+  },
+  "include": ["**/*.ts", "**/*.tsx"]
+}

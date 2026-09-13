@@ -1,0 +1,20 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "explicit"
+  },
+  "editor.defaultFormatter": "oxc.oxc-vscode",
+  "files.associations": {
+    "*.css": "tailwindcss" // @see {@link https://github.com/tailwindlabs/tailwindcss-intellisense#filesassociations}
+  },
+  "files.watcherExclude": {
+    "**/routeTree.gen.ts": true
+  },
+  "search.exclude": {
+    "**/routeTree.gen.ts": true
+  },
+  "files.readonlyInclude": {
+    "**/routeTree.gen.ts": true
+  },
+  "js/ts.tsdk.path": "./node_modules/typescript/lib",
+  "js/ts.tsdk.promptToUseWorkspaceVersion": true // Use the workspace TypeScript version
+}

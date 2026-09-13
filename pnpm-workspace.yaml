@@ -1,0 +1,7 @@
+# Build Settings (https://pnpm.io/settings/build)
+allowBuilds:
+  esbuild: true
+  workerd: true
+
+# Other Settings (https://pnpm.io/settings/other)
+shellEmulator: true

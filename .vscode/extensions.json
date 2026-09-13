@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "bradlc.vscode-tailwindcss",
+    "github.vscode-github-actions",
+    "github.vscode-pull-request-github",
+    "oxc.oxc-vscode"
+  ]
+}

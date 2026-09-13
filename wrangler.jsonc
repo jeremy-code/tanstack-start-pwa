@@ -1,0 +1,7 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tanstack-start-pwa",
+  "compatibility_date": "2026-09-12",
+  "compatibility_flags": [],
+  "main": "@tanstack/react-start/server-entry",
+}
