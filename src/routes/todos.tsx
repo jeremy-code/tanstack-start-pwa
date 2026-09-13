@@ -51,9 +51,9 @@ const TodosComponent = () => {
               {
                 isCompleted: false,
                 description:
-                  description !== "" ? description : (
-                    createRandomTodo().description
-                  ),
+                  description !== ""
+                    ? description
+                    : createRandomTodo().description,
                 id: crypto.randomUUID(),
               },
             ]);
@@ -82,9 +82,9 @@ const TodosComponent = () => {
                 onChange={(e) =>
                   setTodos((prevTodos) =>
                     prevTodos.map((prevTodo) =>
-                      prevTodo.id === todo.id ?
-                        { ...prevTodo, isCompleted: e.target.checked }
-                      : prevTodo,
+                      prevTodo.id === todo.id
+                        ? { ...prevTodo, isCompleted: e.target.checked }
+                        : prevTodo,
                     ),
                   )
                 }

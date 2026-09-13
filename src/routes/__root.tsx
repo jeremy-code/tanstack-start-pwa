@@ -1,19 +1,16 @@
-import "../components/PwaHook";
 import type { ReactNode } from "react";
 
 import {
   HeadContent,
   Link,
-  ScriptOnce,
   Scripts,
   createRootRoute,
 } from "@tanstack/react-router";
 
 import appCss from "../globals.css?url";
 
-const Devtools =
-  import.meta.env.DEV ?
-    await import("../components/Devtools").then((mod) => mod.Devtools)
+const Devtools = import.meta.env.DEV
+  ? await import("../components/Devtools").then((mod) => mod.Devtools)
   : () => null;
 
 const RootDocument = ({ children }: { children: Readonly<ReactNode> }) => {
@@ -21,15 +18,6 @@ const RootDocument = ({ children }: { children: Readonly<ReactNode> }) => {
     <html lang="en">
       <head>
         <HeadContent />
-        <ScriptOnce>
-          {`
-            if('serviceWorker' in navigator) {
-              window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js', { scope: '/' })
-              })
-            }
-          `}
-        </ScriptOnce>
       </head>
       <body className="p-8">
         <div className="container mx-auto pb-4">
