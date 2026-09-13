@@ -62,12 +62,12 @@ const viteConfig = defineConfig({
     tailwindcss({ optimize: { minify: true } }),
     serwist({
       additionalPrecacheEntries: [{ url: "/", revision: crypto.randomUUID() }],
-      swSrc: "src/sw.ts",
+      swSrc: new URL("src/sw.ts", import.meta.url).pathname,
       // Otherwise, it attempts to to output it in dist/server/sw.js
       swDest: new URL("dist/client/sw.js", import.meta.url).pathname,
       swUrl: "/sw.js",
       base: "https://tanstack-start-pwa.jeremynguyen.workers.dev/",
-      globDirectory: "dist/client",
+      globDirectory: new URL("dist/client", import.meta.url).pathname,
       globPatterns: [
         "**/*.{js,css,html,png,svg,mp3,webmanifest,json,ico,woff2}",
       ],
