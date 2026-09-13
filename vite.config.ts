@@ -60,6 +60,10 @@ const viteConfig = defineConfig({
       swSrc: "src/sw.ts",
       swDest: new URL("dist/client/sw.js", import.meta.url).pathname,
       swUrl: "/sw.js",
+      base:
+        process.env.WORKERS_CI ?
+          "https://tanstack-start-pwa.jeremynguyen.workers.dev/"
+        : undefined,
       globDirectory: "dist/client",
       globPatterns: [
         "**/*.{js,css,html,png,svg,mp3,webmanifest,json,ico,woff2}",
