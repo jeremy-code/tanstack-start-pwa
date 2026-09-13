@@ -57,6 +57,7 @@ const viteConfig = defineConfig({
     react({ compiler: true }),
     tailwindcss({ optimize: { minify: true } }),
     serwist({
+      additionalPrecacheEntries: [{ url: "/", revision: crypto.randomUUID() }],
       swSrc: "src/sw.ts",
       swDest: new URL("dist/client/sw.js", import.meta.url).pathname,
       swUrl: "/sw.js",
