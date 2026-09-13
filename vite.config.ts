@@ -66,7 +66,6 @@ const viteConfig = defineConfig({
       // Otherwise, it attempts to to output it in dist/server/sw.js
       swDest: new URL("dist/client/sw.js", import.meta.url).pathname,
       swUrl: "/sw.js",
-      base: "https://tanstack-start-pwa.jeremynguyen.workers.dev/",
       globDirectory: new URL("dist/client", import.meta.url).pathname,
       globPatterns: [
         "**/*.{js,css,html,png,svg,mp3,webmanifest,json,ico,woff2}",
