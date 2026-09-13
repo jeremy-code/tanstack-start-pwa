@@ -53,15 +53,10 @@ const viteConfig = defineConfig({
   plugins: [
     ...(isDev ? [devtools()] : []),
     cloudflare({ viteEnvironment: { name: "ssr" } }),
-    tanstackStart({
-      prerender: {
-        enabled: true,
-      },
-    }),
+    tanstackStart(),
     react({ compiler: true }),
     tailwindcss({ optimize: { minify: true } }),
     serwist({
-      additionalPrecacheEntries: [{ url: "/", revision: crypto.randomUUID() }],
       swSrc: new URL("src/sw.ts", import.meta.url).pathname,
       // Otherwise, it attempts to to output it in dist/server/sw.js
       swDest: new URL("dist/client/sw.js", import.meta.url).pathname,
