@@ -4,11 +4,9 @@ import {
   createContext,
   dev as serwistDev,
   main as serwistMain,
-} from "@serwist/vite";
-import type {
-  PluginOptions,
-  SerwistViteApi,
-  SerwistViteContext,
+  type PluginOptions,
+  type SerwistViteApi,
+  type SerwistViteContext,
 } from "@serwist/vite";
 import tailwindcss from "@tailwindcss/vite";
 import { devtools } from "@tanstack/devtools-vite";
@@ -17,6 +15,7 @@ import react from "@vitejs/plugin-react";
 import { defineConfig, type Plugin } from "vite";
 import { analyzer } from "vite-bundle-analyzer";
 
+// https://github.com/serwist/serwist/blob/adf0d79ae8ba7d87cce2251ffc29526955511a2b/packages/vite/src/plugins/build.ts
 const serwistBuild = (ctx: SerwistViteContext, api: SerwistViteApi): Plugin => {
   return {
     name: "@serwist/vite:build",
@@ -30,6 +29,7 @@ const serwistBuild = (ctx: SerwistViteContext, api: SerwistViteApi): Plugin => {
       sequential: true,
       order: ctx.userOptions?.integration?.closeBundleOrder,
       async handler() {
+        // ctx.viteConfig.build.ssr is always true
         if (!ctx.options.disable) {
           await api.generateSW();
         }
@@ -41,6 +41,7 @@ const serwistBuild = (ctx: SerwistViteContext, api: SerwistViteApi): Plugin => {
   };
 };
 
+// https://github.com/serwist/serwist/blob/adf0d79ae8ba7d87cce2251ffc29526955511a2b/packages/vite/src/index.ts
 const serwist = (userOptions: PluginOptions): Plugin[] => {
   const ctx = createContext(userOptions, undefined);
   const api = createApi(ctx);
@@ -62,13 +63,17 @@ const viteConfig = defineConfig({
       swDest: new URL("dist/client/sw.js", import.meta.url).pathname,
       swUrl: "/sw.js",
       globDirectory: "dist/client",
-      globPatterns: [
-        "**/*.{js,css,html,png,svg,mp3,webmanifest,json,ico,woff2}",
-      ],
+      globPatterns: ["**/*.{js,css,html,png,mp3,webmanifest,json,ico,woff2}"],
       rollupFormat: "iife",
     }),
     ...(process.env.ANALYZE ? [analyzer()] : []),
   ],
+  optimizeDeps: {
+    include: [
+      // virtual:serwist imports "@serwist/window"
+      "@serwist/window",
+    ],
+  },
 });
 
 export default viteConfig;
