@@ -1,33 +1,16 @@
-import { useEffect, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
-import { getSerwist } from "virtual:serwist";
 
 import { Nav } from "../components/Nav";
+import { SWRegistrar } from "../components/SWRegistrar";
 import appCss from "../globals.css?url";
 
-const Devtools =
-  import.meta.env.DEV ?
-    await import("../components/Devtools").then((mod) => mod.Devtools)
+const Devtools = import.meta.env.DEV
+  ? await import("../components/Devtools").then((mod) => mod.Devtools)
   : () => null;
 
 const RootDocument = ({ children }: { children: Readonly<ReactNode> }) => {
-  useEffect(() => {
-    const loadSerwist = async () => {
-      if ("serviceWorker" in navigator) {
-        const serwist = await getSerwist();
-
-        serwist?.addEventListener("installed", () => {
-          console.log("Serwist installed!");
-        });
-
-        void serwist?.register();
-      }
-    };
-
-    loadSerwist();
-  }, []);
-
   return (
     <html lang="en">
       <head>
@@ -39,6 +22,7 @@ const RootDocument = ({ children }: { children: Readonly<ReactNode> }) => {
         </div>
         {children}
         <Devtools />
+        <SWRegistrar />
         <Scripts />
       </body>
     </html>
